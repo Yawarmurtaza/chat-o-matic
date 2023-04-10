@@ -3,7 +3,7 @@
 const { GraphQLServer, PubSub } = require('graphql-yoga');
 
 
-const chatMessagesArray = [{messageId: 1, user: "John", messageContent: "Hello World"}, {messageId: 2, user: "Jane", messageContent: "Hello World"}];
+const chatMessagesArray = [{messageId: 0, user: "John", messageContent: "Hello World"}, {messageId: 1, user: "Jane", messageContent: "Hello World"}];
 
 // every graphql server needs types, its called schema.  The schema or a type is the blueprint for the data that will be returned from the server.
 const chatMessageTypeDefs = `
@@ -15,8 +15,8 @@ const chatMessageTypeDefs = `
   
   type ChatMessage {
     messageId: ID! #### ID is a type in graphql, it is a string, but it is unique.  It is a unique identifier for the object.
-      user: String!
-      messageContent: String!
+    user: String!
+    messageContent: String!
   }
 
   
