@@ -1,7 +1,5 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
-import "bootstrap/dist/css/bootstrap.min.css";
-import {Container}  from "shards-react"
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
@@ -10,25 +8,28 @@ const client = new ApolloClient({
 
 
   const GET_MESSAGES = gql`
-query {
-  chatMessages{
+  query {
+    chatMessagesKey{
     messageId
     user
     messageContent
   }
-}`;
+}
+  `;
 
 function Messages ({user}) {
     const {data} = useQuery(GET_MESSAGES);
-    if(data == undefined && data == null){
-        console.log("data is null");
-        return (<>  </>);
+    if(data === undefined || data === null){
+        return null;
     }
-    
+
+    const messages = data.chatMessagesKey;
+    console.log(messages);
+
     return (
         <>
         {
-            data.chatMessagesArray.map(({ messageId, user: messageUser, messageContent}) => {
+            data.chatMessages.map(({ messageId, user: messageUser, messageContent}) => {
                 <div style={{
                     display: 'flex', 
                     justifyContent: user === messageUser ? 'flex-end' : 'flex-start', 
@@ -50,13 +51,14 @@ function Messages ({user}) {
             })
         }
         </>
-    );}
+    );
+}
 
 function Chat() {
 return (
-    <Container>
+    <div>
         <Messages user="Yawar"/>
-    </Container>
+    </div>
     );};
 
 export default function ChatWrapper() {

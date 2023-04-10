@@ -27,7 +27,7 @@ const chatMessageTypeDefs = `
   ############################################################################################
   
   type Query {
-    chatMessages: [ChatMessage!]! # key is the name of the query?, value is the array of ChatMessage objects
+    chatMessagesKey: [ChatMessage!]! # key is the name of the query?, value is the array of ChatMessage objects
   }
 
   
@@ -53,7 +53,7 @@ const chatMessageResolvers = {
     * RESOLVER Query 
     *************************************************************************/
     Query:{
-        chatMessages: () => chatMessagesArray,
+        chatMessagesKey: () => chatMessagesArray,
     },
 
     /************************************************************************
