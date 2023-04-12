@@ -42,3 +42,9 @@ yarn add shards-react
 ```
 npm install @apollo/client graphql
 ```
+
+
+# Apollo Client Subscriptions
+```
+ yarn add subscriptions-transport-ws
+```
